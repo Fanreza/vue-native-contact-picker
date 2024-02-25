@@ -28,7 +28,7 @@ app.component('ContactPicker', ContactPicker)
 
 ```vue
 <script setup lang="ts">
-import ContactPicker from '@/components/ContactPicker.vue'
+import { ContactPicker } from 'vue-native-contact-picker'
 
 const handlePicked = (contacts: any) => {
   console.log(contacts)
