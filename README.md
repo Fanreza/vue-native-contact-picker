@@ -1,52 +1,72 @@
-# vue-native-contact-picker
+## vue-native-contact-picker
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue wrapper for ContactPicker API
 
-## Recommended IDE Setup
+**This feature require user to accept permission and the website must run in secure environment (https)**
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Install
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```shell
+`npm i vue-native-contact-picker`
 ```
 
-### Compile and Hot-Reload for Development
+Import and register component
 
-```sh
-npm run dev
+**Global**
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+import { ContactPicker } from 'vue-native-contact-picker'
+
+const app = createApp(App)
+app.component('ContactPicker', ContactPicker)
 ```
 
-### Type-Check, Compile and Minify for Production
+**Local**
 
-```sh
-npm run build
+```vue
+<script setup lang="ts">
+import ContactPicker from '@/components/ContactPicker.vue'
+
+const handlePicked = (contacts: any) => {
+  console.log(contacts)
+}
+
+const handleErrors = (error: string) => {
+  console.error(error)
+}
+</script>
+
+<template>
+  <ContactPicker
+    :props-select="['name', 'email', 'tel', 'address', 'icon']"
+    :multiple="true"
+    @errors="handleErrors"
+    @picked="handlePicked"
+  />
+</template>
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Browser Support
 
-```sh
-npm run test:unit
-```
+[Specification]('https://w3c.github.io/contact-picker/spec/')
 
-### Lint with [ESLint](https://eslint.org/)
+| Browser       | Version |
+| ------------- | ------- |
+| Chrome Mobile | 120     |
 
-```sh
-npm run lint
-```
+## Props
+
+| Name        | Value                                    | Default                                     |
+| ----------- | ---------------------------------------- | ------------------------------------------- |
+| propsSelect | Array of name, email, tel, address, icon | ['name', 'email', 'tel', 'address', 'icon'] |
+| multiple    | boolean                                  | true                                        |
+
+## Events
+
+| Name   | Value                                                                                                                         |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| picked | Object { name: Array of string, email: Array of string, tel: Array of string, address: Array of string, icon: Array of Blob } |
+| errors | Object Errors                                                                                                                 |

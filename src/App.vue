@@ -13,8 +13,8 @@ const handleErrors = (error: string) => {
 <template>
   <div>
     <ContactPicker
-      :props-select="['name']"
-      :multiple="false"
+      :props-select="['name', 'email', 'tel', 'address', 'icon']"
+      :multiple="true"
       @errors="handleErrors"
       @picked="handlePicked"
     />
