@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ContactPicker from '@/components/ContactPicker.vue'
+import ContactPicker from './components/ContactPicker.vue'
 
 const handlePicked = (contacts: any) => {
   console.log(contacts)

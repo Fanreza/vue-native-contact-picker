@@ -1,6 +1,6 @@
 {
   "name": "vue-native-contact-picker",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "private": false,
   "type": "module",
   "files": [
@@ -16,9 +16,13 @@
   },
   "types": "./dist/index.d.ts",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Fanreza/vue-native-contact-picker.git"
+    "url": "https://github.com/Fanreza/vue-native-contact-picker.git",
+    "type": "git"
   },
+  "bugs": {
+    "url": "https://github.com/Fanreza/vue-native-contact-picker/issues"
+  },
+  "homepage": "https://github.com/Fanreza/vue-native-contact-picker",
   "keywords": [
     "contact-picker",
     "vue3",
